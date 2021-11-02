@@ -31,6 +31,7 @@ enterMenu.minsize(600, 300)
 enterMenu.resizable(None, None)
 welcomeMenu = WelcomeMenuEnter(enterMenu)
 enterMenu.mainloop()
+print('спасибо за гит ludwici')
 
 
 
