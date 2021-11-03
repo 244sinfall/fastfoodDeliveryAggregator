@@ -1,9 +1,12 @@
 import tkinter
+import json
 from tkinter import *
+
+import foodproducts.foodproduct
+from foodproducts.foodproduct import *
 
 
 class WelcomeMenuEnter:
-
     def __init__(self, parent):
         self.parent = parent
 
@@ -17,7 +20,7 @@ class WelcomeMenuEnter:
         self.clientModeButton = Button(self.modeSelector)
         self.clientModeButton.configure(text='Клиент')
         self.clientModeButton.pack(side=LEFT)
-        self.clientModeButton.bind('<Button-1>', self.getclientgui)
+        self.clientModeButton.bind('<Button-1>', foodproducts.foodproduct.writeproduct('Котлета из говядины',26.11,11.75,0.0,217,100,40))
 
         self.adminModeButton = Button(self.modeSelector)
         self.adminModeButton.configure(text='Администратор')
