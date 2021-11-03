@@ -20,11 +20,11 @@ class WelcomeMenuEnter:
         self.clientModeButton = Button(self.modeSelector)
         self.clientModeButton.configure(text='Клиент')
         self.clientModeButton.pack(side=LEFT)
-        self.clientModeButton.bind('<Button-1>', foodproducts.foodproduct.writeproduct('Котлета из говядины',26.11,11.75,0.0,217,100,40))
+        self.clientModeButton.bind('<Button-1>', delete('Людвичи'))
 
         self.adminModeButton = Button(self.modeSelector)
         self.adminModeButton.configure(text='Администратор')
         self.adminModeButton.pack(side=LEFT)
 
     def getclientgui(self, event) -> None:
-        self.parent.destroy()
+        print(check_existance('pizda'))

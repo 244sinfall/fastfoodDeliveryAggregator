@@ -2,52 +2,59 @@ import json
 from json import *
 
 
-def writeproduct(name, protein, fats, carbohydrates, calories, mass, price) -> str:
-    productinfo = {
-        "name": name,
-        "protein": protein,
-        "fats": fats,
-        "carbohydrates": carbohydrates,
-        "calories": calories,
-        "mass": mass,
-        "price": price
-    }
-    with open('products.json','r+') as infile:
-        data = json.loads(infile.read())
-        if name in data['name']:
-            return 'Такой продукт уже существует'
-        else:
-            with open('products.json','a') as outfile:
-                json.dump(productinfo, outfile)
-                return 'Продукт успешно добавлен'
+def update(list: list) -> None:
+    with open('foodproducts/products.json', 'w') as outfile:
+        json.dump(list, outfile, ensure_ascii=False)
 
-def deleteproduct(name) -> str:
-    with open('products.json', 'r') as infile:
-        data = json.loads(infile.read())
-        for dicts in data:
-            if name in dicts['name']:
-                dicts.pop()
+
+def append(record) -> None:
+    with open('foodproducts/products.json', 'r') as outfile:
+        recorder = json.load(outfile)
+        recorder.append(record)
+        update(recorder)
+
+
+def check_existance(name: str) -> bool:
+    with open('foodproducts/products.json', 'r') as inputfile:
+        checker = json.load(inputfile)
+        for objects in checker:
+            if objects['name'] == name:
+                return True
+        return False
+
+
+def create(name, protein, fats, carbohydrates, calories, mass, price) -> str:
+    if check_existance(name) is False:
+        product_info = {
+            "name": name,
+            "protein": protein,
+            "fats": fats,
+            "carbohydrates": carbohydrates,
+            "calories": calories,
+            "mass": mass,
+            "price": price
+        }
+        append(product_info)
+        return 'Продукт успешно добавлен'
+    else:
+        return 'Продукт уже существует'
+
+
+def delete(name) -> str:
+    with open('foodproducts/products.json', 'r') as infile:
+        deleter = json.load(infile)
+        for record in deleter:
+            if record['name'] == name:
+                deleter.remove(record)
+                update(deleter)
                 return 'Продукт успешно удален'
-        else:
-            return 'Такого продукта не существует'
-
-def getcertainproduct(name) -> dict:
-    with open('products.json', 'r') as infile:
-        data = json.loads(infile.read())
-        for dicts in data:
-            if name == dicts['name']:
-                return dicts
-            else:
-                return {"": ''}
-
-def getproductlist() -> list:
-    with open('products.json', 'r') as infile:
-        data = json.loads(infile.read())
-        return data
-
-#def deleteproduct(name) -> str:
-#    with open('products.json', 'rw') as outfile:
-#        if name['name'] in outfile:
+        return 'Такого продукта не существует'
 
 
+def get_product_info(name) -> dict:
+    with open('foodproducts/products.json', 'r') as infile:
+        getter = json.load(infile)
+        for record in getter:
+            if record['name'] == name:
+                return record
 
