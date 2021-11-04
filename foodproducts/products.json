@@ -1,1 +1,47 @@
-[{"name": "\u0412\u043e\u0434\u0430", "protein": 0.0, "fats": 0.0, "carbohydrates": 0.0, "calories": 0, "mass": 500, "price": 30}]
+[
+    {
+        "name": "ï¿½ï¿½ï¿½ï¿½ï¿½",
+        "protein": "1.5",
+        "fats": "2.5",
+        "carbohydrates": "3.5",
+        "calories": "40",
+        "mass": "100",
+        "price": "50"
+    },
+    {
+        "name": "Õóéíÿ",
+        "protein": "1",
+        "fats": "2",
+        "carbohydrates": "3",
+        "calories": "4",
+        "mass": "5",
+        "price": "6"
+    },
+    {
+        "name": "",
+        "protein": "1",
+        "fats": "2",
+        "carbohydrates": "3",
+        "calories": "4",
+        "mass": "5",
+        "price": "6"
+    },
+    {
+        "name": " ûû",
+        "protein": "1",
+        "fats": "2",
+        "carbohydrates": "3",
+        "calories": "4",
+        "mass": "5",
+        "price": "6"
+    },
+    {
+        "name": "Ìóêà",
+        "protein": "123",
+        "fats": "23",
+        "carbohydrates": "42",
+        "calories": "52",
+        "mass": "62",
+        "price": "72"
+    }
+]

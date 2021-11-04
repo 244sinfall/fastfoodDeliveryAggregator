@@ -2,9 +2,9 @@ import json
 from json import *
 
 
-def update(list: list) -> None:
+def update(to_update: list) -> None:
     with open('foodproducts/products.json', 'w') as outfile:
-        json.dump(list, outfile, ensure_ascii=False)
+        json.dump(to_update, outfile, ensure_ascii=False, indent=4)
 
 
 def append(record) -> None:
