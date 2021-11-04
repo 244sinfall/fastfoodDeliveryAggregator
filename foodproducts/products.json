@@ -1,47 +1,56 @@
 [
     {
-        "name": "ï¿½ï¿½ï¿½ï¿½ï¿½",
-        "protein": "1.5",
-        "fats": "2.5",
-        "carbohydrates": "3.5",
-        "calories": "40",
-        "mass": "100",
-        "price": "50"
-    },
-    {
-        "name": "Õóéíÿ",
-        "protein": "1",
-        "fats": "2",
-        "carbohydrates": "3",
-        "calories": "4",
-        "mass": "5",
-        "price": "6"
-    },
-    {
-        "name": "",
-        "protein": "1",
-        "fats": "2",
-        "carbohydrates": "3",
-        "calories": "4",
-        "mass": "5",
-        "price": "6"
-    },
-    {
-        "name": " ûû",
-        "protein": "1",
-        "fats": "2",
-        "carbohydrates": "3",
-        "calories": "4",
-        "mass": "5",
-        "price": "6"
-    },
-    {
-        "name": "Ìóêà",
+        "name": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
         "protein": "123",
-        "fats": "23",
-        "carbohydrates": "42",
-        "calories": "52",
-        "mass": "62",
-        "price": "72"
+        "fats": "456",
+        "carbohydrates": "789",
+        "calories": "123",
+        "mass": 1,
+        "price": 5
+    },
+    {
+        "name": "234325",
+        "protein": 6434.0,
+        "fats": 543.0,
+        "carbohydrates": 46374.0,
+        "calories": 2312,
+        "mass": 5324,
+        "price": 6434.0
+    },
+    {
+        "name": "qwe",
+        "protein": 123.0,
+        "fats": 123.0,
+        "carbohydrates": 123.0,
+        "calories": 123,
+        "mass": 123,
+        "price": 123.0
+    },
+    {
+        "name": "esqa",
+        "protein": 123.0,
+        "fats": 123.0,
+        "carbohydrates": 123.0,
+        "calories": 123,
+        "mass": 1231,
+        "price": 123.0
+    },
+    {
+        "name": "123",
+        "protein": 123.0,
+        "fats": 123.0,
+        "carbohydrates": 123.0,
+        "calories": 123,
+        "mass": 123,
+        "price": 123.0
+    },
+    {
+        "name": "456",
+        "protein": 456.0,
+        "fats": 456.0,
+        "carbohydrates": 456.0,
+        "calories": 456,
+        "mass": 456,
+        "price": 456.0
     }
 ]
