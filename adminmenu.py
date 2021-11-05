@@ -1,10 +1,5 @@
 import json
-
-from PyQt5 import QtGui, uic, QtWidgets, QtCore
-from PyQt5.QtGui import QIntValidator, QDoubleValidator
-from PyQt5.QtWidgets import QTableWidgetItem, QWidget
-
-import foodproducts.foodproduct
+from PyQt5.QtWidgets import QTableWidgetItem
 from foodproducts import foodproduct
 from foods import foods
 from foods.foods import get_food_stats

@@ -1,10 +1,8 @@
-import tkinter
-from tkinter import *
 from PyQt5 import uic, QtGui
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, QWidget, QHeaderView
+from PyQt5.QtWidgets import QMainWindow, QWidget
 
 from admin.foodaddmenu import FoodAddMenu
 from admin.foodeditmenu import FoodEditMenu

@@ -97,7 +97,6 @@ def get_food_stats(name) -> str:
                 mass = 0.0
                 ingredients = record['ingredients']
                 for ingredient in ingredients:
-                    print(ingredient)
                     mass += ingredients[ingredient]
                     localmass = ingredients[ingredient]
                     localstats = get_product_info(ingredient)
