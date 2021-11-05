@@ -1,56 +1,20 @@
 [
     {
-        "name": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
-        "protein": "123",
-        "fats": "456",
-        "carbohydrates": "789",
-        "calories": "123",
-        "mass": 1,
-        "price": 5
+        "name": "Колбаса",
+        "protein": 12.0,
+        "fats": 13.0,
+        "carbohydrates": 14.0,
+        "calories": 151,
+        "mass": 166,
+        "price": 17.0
     },
     {
-        "name": "234325",
-        "protein": 6434.0,
-        "fats": 543.0,
-        "carbohydrates": 46374.0,
-        "calories": 2312,
-        "mass": 5324,
-        "price": 6434.0
-    },
-    {
-        "name": "qwe",
+        "name": "Людвичи",
         "protein": 123.0,
-        "fats": 123.0,
-        "carbohydrates": 123.0,
-        "calories": 123,
-        "mass": 123,
-        "price": 123.0
-    },
-    {
-        "name": "esqa",
-        "protein": 123.0,
-        "fats": 123.0,
-        "carbohydrates": 123.0,
-        "calories": 123,
-        "mass": 1231,
-        "price": 123.0
-    },
-    {
-        "name": "123",
-        "protein": 123.0,
-        "fats": 123.0,
-        "carbohydrates": 123.0,
-        "calories": 123,
-        "mass": 123,
-        "price": 123.0
-    },
-    {
-        "name": "456",
-        "protein": 456.0,
-        "fats": 456.0,
-        "carbohydrates": 456.0,
-        "calories": 456,
-        "mass": 456,
-        "price": 456.0
+        "fats": 321.0,
+        "carbohydrates": 432.0,
+        "calories": 543,
+        "mass": 654,
+        "price": 1500.0
     }
 ]

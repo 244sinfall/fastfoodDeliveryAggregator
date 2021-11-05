@@ -39,6 +39,21 @@ def create(name, protein, fats, carbohydrates, calories, mass, price) -> str:
     else:
         return 'Продукт уже существует'
 
+def change(name, protein, fats, carbohydrates, calories, price) -> str:
+    if check_existance(name) is True:
+        with open('foodproducts/products.json', 'r') as inputfile:
+            checker = json.load(inputfile)
+            for objects in checker:
+                if objects['name'] == name:
+                    objects['protein'] = protein
+                    objects['fats'] = fats
+                    objects['carbohydrates'] = carbohydrates
+                    objects['calories'] = calories
+                    objects['price'] = price
+                    update(checker)
+                    return 'Продукт успешно изменен'
+            return 'Ошибка!'
+
 
 def delete(name) -> str:
     with open('foodproducts/products.json', 'r') as infile:

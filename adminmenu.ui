@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>adminWidget</class>
+ <widget class="QWidget" name="adminWidget">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Панель администратора</string>
   </property>
   <widget class="QTabWidget" name="productsTab">
    <property name="geometry">
@@ -157,6 +157,19 @@
      </property>
      <property name="text">
       <string>Изменить</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="productStatusLabel">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>430</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

@@ -7,7 +7,8 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHeaderView
 
 #from adminmenu import load_products
-from adminmenu import load_products, ProductAddMenu
+from adminmenu import load_products, ProductAddMenu, ProductEditMenu
+from foodproducts import foodproduct
 
 
 class WelcomeMenu(QMainWindow):
@@ -31,18 +32,43 @@ class AdminMenu(QWidget):
         header = self.productsTable.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        self.addProductButton.clicked.connect(self.addProductButton_clicked)
+        self.addProductButton.clicked.connect(self.add_product)
         self.addproducter = None
+        self.editproducter = None
         self.adminExitButton.clicked.connect(self.close)
+        self.productsTable.itemSelectionChanged.connect(self.enable_del_change_buttons)
+        self.deleteProductButton.clicked.connect(self.delete_product)
+        self.editProductButton.clicked.connect(self.edit_product)
         load_products(self)
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         self.parent.show()
         super().closeEvent(a0)
 
-    def addProductButton_clicked(self) -> None:
+    def delete_product(self):
+        name_to_delete = str(self.productsTable.item(self.productsTable.currentRow(), 0).text())
+        self.productStatusLabel.setText(foodproduct.delete(name_to_delete))
+        load_products(self)
+
+    def add_product(self) -> None:
         self.addproducter = ProductAddMenu(parent=self)
         self.addproducter.show()
+
+    def edit_product(self) -> None:
+        self.editproducter = ProductEditMenu(parent=self)
+        self.editproducter.show()
+
+    def enable_del_change_buttons(self):
+        if len(set(index.row() for index in self.productsTable.selectedIndexes())) == 1:
+            self.editProductButton.setEnabled(True)
+            self.deleteProductButton.setEnabled(True)
+        elif len(set(index.row() for index in self.productsTable.selectedIndexes())) > 1:
+            self.editProductButton.setEnabled(False)
+            self.deleteProductButton.setEnabled(True)
+        elif len(set(index.row() for index in self.productsTable.selectedIndexes())) == 0:
+            self.editProductButton.setEnabled(False)
+            self.deleteProductButton.setEnabled(False)
+
 
 
 app = QtWidgets.QApplication(sys.argv)
