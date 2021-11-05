@@ -47,6 +47,111 @@
     <attribute name="title">
      <string>Блюда</string>
     </attribute>
+    <widget class="QPushButton" name="deleteFoodButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>430</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Удалить</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="foodsTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>711</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>511</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="columnCount">
+      <number>4</number>
+     </property>
+     <column>
+      <property name="text">
+       <string>Наименование</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Цена</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Свойства</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ингредиенты</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="editFoodButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>430</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Изменить</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addFoodButton">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>430</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Добавить...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="foodStatusLabel">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>430</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="productsTab">
     <attribute name="title">
@@ -162,9 +267,9 @@
     <widget class="QLabel" name="productStatusLabel">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>100</x>
        <y>430</y>
-       <width>171</width>
+       <width>331</width>
        <height>16</height>
       </rect>
      </property>

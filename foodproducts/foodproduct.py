@@ -73,3 +73,20 @@ def get_product_info(name) -> dict:
             if record['name'] == name:
                 return record
 
+
+def get_products_list() -> list:
+    with open('foodproducts/products.json', 'r') as infile:
+        getter = json.load(infile)
+        output = []
+        for record in getter:
+            output.append(record['name'])
+        return output
+
+
+def get_partial_food_price(name, mass) -> float:
+    with open('foodproducts/products.json', 'r') as infile:
+        getter = json.load(infile)
+        for record in getter:
+            if record['name'] == name:
+                return (record['price']/record['mass'])*mass
+        return 0.0
