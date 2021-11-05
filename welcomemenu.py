@@ -1,6 +1,6 @@
 import tkinter
 from tkinter import *
-from adminmenu import *
+from admin import *
 from PyQt5 import QtWidgets, QtCore
 
 

@@ -6,11 +6,14 @@ import sys
 
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHeaderView
 
-#from adminmenu import load_products
-from adminmenu import load_products, ProductAddMenu, ProductEditMenu, load_foods, FoodAddMenu, FoodEditMenu
+from admin.foodaddmenu import FoodAddMenu
+from admin.foodeditmenu import FoodEditMenu
+from admin.productaddmenu import ProductAddMenu
+from admin.producteditmenu import ProductEditMenu
+from adminmenu import load_products, load_foods
 from foodproducts import foodproduct
 from foods import foods
-from foods.foods import get_food_info, is_product_usable
+from foods.foods import is_product_usable
 
 
 class WelcomeMenu(QMainWindow):

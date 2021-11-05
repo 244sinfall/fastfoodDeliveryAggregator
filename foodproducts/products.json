@@ -16,14 +16,5 @@
         "calories": 250,
         "mass": 100,
         "price": 40.0
-    },
-    {
-        "name": "Майонез",
-        "protein": 20.0,
-        "fats": 30.0,
-        "carbohydrates": 15.0,
-        "calories": 400,
-        "mass": 100,
-        "price": 50.0
     }
 ]
