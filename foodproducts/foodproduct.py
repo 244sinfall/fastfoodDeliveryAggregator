@@ -39,6 +39,7 @@ def create(name, protein, fats, carbohydrates, calories, mass, price) -> str:
     else:
         return 'Продукт уже существует'
 
+
 def change(name, protein, fats, carbohydrates, calories, price) -> str:
     if check_existance(name) is True:
         with open('foodproducts/products.json', 'r', encoding='windows-1251') as inputfile:

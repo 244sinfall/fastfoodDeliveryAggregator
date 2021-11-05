@@ -37,6 +37,7 @@ def create(name, price, ingredients: dict) -> str:
     else:
         return 'Блюдо уже существует'
 
+
 def change(name, price, ingredients: dict) -> str:
     if check_existance(name) is True:
         with open('foods/foods.json', 'r', encoding='windows-1251') as inputfile:
@@ -60,12 +61,14 @@ def delete(name) -> str:
                 return 'Продукт успешно удален'
         return 'Такого продукта не существует'
 
+
 def get_food_json_dict(name) -> dict:
     with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         getter = json.load(infile)
         for record in getter:
             if record['name'] == name:
                 return record
+
 
 def get_food_info(name) -> list:
     with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
@@ -75,6 +78,7 @@ def get_food_info(name) -> list:
                 ingreds = ", ".join(record['ingredients'])
                 newrecord = [record['name'], record['price'], ingreds]
                 return newrecord
+
 
 def is_product_usable(productname) -> bool:
     with open('foods/foods.json', 'r', encoding='windows-1251') as infile:

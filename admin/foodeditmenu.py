@@ -2,9 +2,9 @@ from PyQt5 import uic, QtWidgets, QtCore
 from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
-from admin.commonoperations import add_ingredients_to_list, update_selfprice
+from admin.commonoperations import add_ingredients_to_list, update_selfprice, load_ingredients_to_list, \
+    enable_del_button, del_ingredient_from_list
 from adminmenu import load_foods
-from foodproducts import foodproduct
 from foods import foods
 
 
@@ -21,11 +21,15 @@ class FoodEditMenu(QWidget):
         )
         self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        self.ingredientsToEdit.itemSelectionChanged.connect(self.enable_del_button)
+        self.ingredientsToEdit.itemSelectionChanged.connect(
+            lambda: enable_del_button(self.ingredientsToEdit, self.deleteIngredient)
+        )
         self.ingredientsToEdit.itemChanged.connect(
             lambda: update_selfprice(self.ingredientsToEdit, self.selfPrice)
         )
-        self.deleteIngredient.clicked.connect(self.del_ingredient_from_list)
+        self.deleteIngredient.clicked.connect(
+            lambda: del_ingredient_from_list(self.ingredientsToEdit, self.selfPrice)
+        )
         food_info = foods.get_food_json_dict(
             self.parent.foodsTable.item(self.parent.foodsTable.currentRow(), 0).text())
         self.priceEditor.setText(str(food_info['price']))
@@ -35,22 +39,7 @@ class FoodEditMenu(QWidget):
             self.ingredientsToEdit.setItem(0, 1, QTableWidgetItem(str(food_info['ingredients'][ingreds])))
             name = self.ingredientsToEdit.item(0, 0)
             name.setFlags(name.flags() ^ QtCore.Qt.ItemIsEditable)
-        self.load_ingredients_to_list()
-
-    def enable_del_button(self):
-        if len(set(index.row() for index in self.ingredientsToEdit.selectedIndexes())) == 1:
-            self.deleteIngredient.setEnabled(True)
-        else:
-            self.deleteIngredient.setEnabled(False)
-
-    def load_ingredients_to_list(self):
-        ingredients = foodproduct.get_products_list()
-        for item in ingredients:
-            self.ingredientsShow.addItem(item)
-
-    def del_ingredient_from_list(self):
-        self.ingredientsToEdit.removeRow(self.ingredientsToEdit.currentRow())
-        update_selfprice(self.ingredientsToEdit, self.selfPrice)
+        load_ingredients_to_list(self.ingredientsShow)
 
     def edit_old_food(self) -> None:
         price = float(self.priceEditor.text())

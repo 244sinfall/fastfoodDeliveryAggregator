@@ -19,6 +19,24 @@ def update_selfprice(given_table, given_label):
         given_label.setText(f'Себестоимость: 0 руб.')
 
 
+def enable_del_button(given_table, given_button):
+    if len(set(index.row() for index in given_table.selectedIndexes())) == 1:
+        given_button.setEnabled(True)
+    else:
+        given_button.setEnabled(False)
+
+
+def load_ingredients_to_list(given_list):
+    ingredients = foodproduct.get_products_list()
+    for item in ingredients:
+        given_list.addItem(item)
+
+
+def del_ingredient_from_list(given_table, given_label):
+    given_table.removeRow(given_table.currentRow())
+    update_selfprice(given_table, given_label)
+
+
 def add_ingredients_to_list(given_table, given_list, statustext):
     rowcounts = given_table.rowCount()
     if rowcounts > 0:
