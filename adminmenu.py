@@ -13,7 +13,7 @@ from foods.foods import get_food_stats
 def load_products(window) -> None:
     while window.productsTable.rowCount() > 0:
         window.productsTable.removeRow(0)
-    with open('foodproducts/products.json', 'r') as inputfile:
+    with open('foodproducts/products.json', 'r', encoding='windows-1251') as inputfile:
         row = 0
         counter = json.load(inputfile)
         for object_counter in counter:
@@ -31,7 +31,7 @@ def load_products(window) -> None:
 def load_foods(window) -> None:
     while window.foodsTable.rowCount() > 0:
         window.foodsTable.removeRow(0)
-    with open('foods/foods.json', 'r') as inputfile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as inputfile:
         row = 0
         counter = json.load(inputfile)
         for object_counter in counter:

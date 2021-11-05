@@ -5,19 +5,19 @@ from foodproducts.foodproduct import get_product_info
 
 
 def update(to_update: list) -> None:
-    with open('foods/foods.json', 'w') as outfile:
+    with open('foods/foods.json', 'w', encoding='windows-1251') as outfile:
         json.dump(to_update, outfile, ensure_ascii=False, indent=4)
 
 
 def append(record) -> None:
-    with open('foods/foods.json', 'r') as outfile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as outfile:
         recorder = json.load(outfile)
         recorder.append(record)
         update(recorder)
 
 
 def check_existance(name: str) -> bool:
-    with open('foods/foods.json', 'r') as inputfile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as inputfile:
         checker = json.load(inputfile)
         for objects in checker:
             if objects['name'] == name:
@@ -39,7 +39,7 @@ def create(name, price, ingredients: dict) -> str:
 
 def change(name, price, ingredients: dict) -> str:
     if check_existance(name) is True:
-        with open('foods/foods.json', 'r') as inputfile:
+        with open('foods/foods.json', 'r', encoding='windows-1251') as inputfile:
             checker = json.load(inputfile)
             for objects in checker:
                 if objects['name'] == name:
@@ -51,7 +51,7 @@ def change(name, price, ingredients: dict) -> str:
 
 
 def delete(name) -> str:
-    with open('foods/foods.json', 'r') as infile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         deleter = json.load(infile)
         for record in deleter:
             if record['name'] == name:
@@ -61,14 +61,14 @@ def delete(name) -> str:
         return 'Такого продукта не существует'
 
 def get_food_json_dict(name) -> dict:
-    with open('foods/foods.json', 'r') as infile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         getter = json.load(infile)
         for record in getter:
             if record['name'] == name:
                 return record
 
 def get_food_info(name) -> list:
-    with open('foods/foods.json', 'r') as infile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         getter = json.load(infile)
         for record in getter:
             if record['name'] == name:
@@ -77,7 +77,7 @@ def get_food_info(name) -> list:
                 return newrecord
 
 def is_product_usable(productname) -> bool:
-    with open('foods/foods.json', 'r') as infile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         getter = json.load(infile)
         for record in getter:
             if productname in record['ingredients']:
@@ -86,7 +86,7 @@ def is_product_usable(productname) -> bool:
 
 
 def get_food_stats(name) -> str:
-    with open('foods/foods.json', 'r') as infile:
+    with open('foods/foods.json', 'r', encoding='windows-1251') as infile:
         getter = json.load(infile)
         for record in getter:
             if record['name'] == name:
