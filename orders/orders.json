@@ -1,9 +1,11 @@
-[
+  [
       {
         "id": 0,
         "username": "Дмитрий",
         "paycheck": 600.0,
+        "paid": true,
         "delivery": true,
+        "status": 0,
         "address": {
           "city": "Красноярск",
           "street": "Взлетная",
@@ -11,8 +13,6 @@
           "apt": ""
         },
         "phone": "89994414646",
-        "paid": true,
-        "status": 0,
         "timeAndDate":  "08.11.21 15:30",
         "timeToDeliver": "08.11.21 18:30",
         "order": {

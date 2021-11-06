@@ -213,9 +213,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="editConfirmButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>154</x>
      <y>230</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>

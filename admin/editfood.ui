@@ -69,9 +69,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="editConfirmButton">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>314</x>
      <y>360</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>
@@ -82,7 +82,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="cancelEditorButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>240</x>
      <y>360</y>
      <width>75</width>
      <height>23</height>
@@ -159,7 +159,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>10</x>
      <y>350</y>
-     <width>121</width>
+     <width>171</width>
      <height>23</height>
     </rect>
    </property>

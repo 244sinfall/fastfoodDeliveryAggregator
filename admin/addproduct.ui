@@ -35,7 +35,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>90</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
@@ -272,9 +272,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="addConfirmButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>154</x>
      <y>230</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>

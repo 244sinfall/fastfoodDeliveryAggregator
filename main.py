@@ -8,7 +8,7 @@ from admin.foodaddmenu import FoodAddMenu
 from admin.foodeditmenu import FoodEditMenu
 from admin.productaddmenu import ProductAddMenu
 from admin.producteditmenu import ProductEditMenu
-from adminmenu import load_products, load_foods
+from adminmenu import load_products, load_foods, load_orders
 from foodproducts import foodproduct
 from foods import foods
 from foods.foods import is_product_usable
@@ -33,6 +33,9 @@ class AdminMenu(QWidget):
         self.parent = parent
         uic.loadUi('adminmenu.ui', self)
         self.adminExitButton.clicked.connect(self.close)
+
+        self.ordersTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        load_orders(self)
 
         self.productsTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         self.productsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)

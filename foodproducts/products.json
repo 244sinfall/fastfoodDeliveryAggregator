@@ -25,23 +25,5 @@
         "calories": 100,
         "mass": 100,
         "price": 3000.0
-    },
-    {
-        "name": "Наркотики",
-        "protein": 1.0,
-        "fats": 1.0,
-        "carbohydrates": 1.0,
-        "calories": 50,
-        "mass": 5,
-        "price": 15000.0
-    },
-    {
-        "name": "Рок-н-ролл",
-        "protein": 20.0,
-        "fats": 20.0,
-        "carbohydrates": 20.0,
-        "calories": 4000,
-        "mass": 1600,
-        "price": 0.0
     }
 ]
