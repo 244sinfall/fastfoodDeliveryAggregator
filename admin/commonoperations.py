@@ -48,3 +48,15 @@ def add_ingredients_to_list(given_table, given_list, statustext):
     given_table.setItem(0, 0, QTableWidgetItem(given_list.currentItem().text()))  # наименование
     given_table.setItem(0, 1, QTableWidgetItem('100'))
     given_table.item(0, 0).setFlags(given_table.item(0, 0).flags() ^ QtCore.Qt.ItemIsEditable)
+
+
+def enable_del_change_buttons(given_table, edit_button, delete_button):
+    if len(set(index.row() for index in given_table.selectedIndexes())) == 1:
+        edit_button.setEnabled(True)
+        delete_button.setEnabled(True)
+    elif len(set(index.row() for index in given_table.selectedIndexes())) > 1:
+        edit_button.setEnabled(False)
+        delete_button.setEnabled(False)
+    elif len(set(index.row() for index in given_table.selectedIndexes())) == 0:
+        edit_button.setEnabled(False)
+        delete_button.setEnabled(False)

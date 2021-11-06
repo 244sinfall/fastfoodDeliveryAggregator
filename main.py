@@ -2,16 +2,22 @@ from PyQt5 import uic, QtGui
 from PyQt5 import QtWidgets
 import sys
 
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QMainWindow, QWidget
 
+from admin.commonoperations import enable_del_change_buttons
 from admin.foodaddmenu import FoodAddMenu
 from admin.foodeditmenu import FoodEditMenu
 from admin.productaddmenu import ProductAddMenu
 from admin.producteditmenu import ProductEditMenu
-from adminmenu import load_products, load_foods, load_orders
+from admin.statsinputmenu import StatsInputMenu
+from guicommonoperations import load_products, load_foods, load_orders
+from client.clientmenu import ClientMenu
 from foodproducts import foodproduct
 from foods import foods
 from foods.foods import is_product_usable
+from orders.orders import delete
 
 
 class WelcomeMenu(QMainWindow):
@@ -19,12 +25,36 @@ class WelcomeMenu(QMainWindow):
         super().__init__()
         uic.loadUi('mainmenu.ui', self)
         self.admin_menu = None
+        self.client_menu = None
         self.admin_Mode_Trigger.clicked.connect(self.go_admin_menu)
+        self.client_Mode_Trigger.clicked.connect(self.go_client_menu)
 
     def go_admin_menu(self):
         self.admin_menu = AdminMenu(parent=self)
         self.admin_menu.show()
         self.hide()
+
+    def go_client_menu(self):
+        self.client_menu = ClientMenuEnter(parent=self)
+        self.client_menu.show()
+        self.hide()
+
+
+class ClientMenuEnter(QWidget):
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        self.clientmenu = None
+        uic.loadUi('client/clientmenuenter.ui', self)
+        regexp = QRegExp("([А-Яа-яЁё]{1,20}\\S)")
+        self.nameInput.setValidator(QRegExpValidator(regexp))
+        self.toClientMenuTrigger.clicked.connect(lambda: self.to_client_menu(self.nameInput.text()))
+
+    def to_client_menu(self, client_name):
+        if len(self.nameInput.text()) > 0:
+            self.clientmenu = ClientMenu(parent=self.parent, client_name=client_name)
+            self.clientmenu.show()
+            self.hide()
 
 
 class AdminMenu(QWidget):
@@ -35,6 +65,12 @@ class AdminMenu(QWidget):
         self.adminExitButton.clicked.connect(self.close)
 
         self.ordersTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.ordersTable.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.ordersTable.itemSelectionChanged.connect(self.delete_order_trigger)
+        self.deleteOrderButton.clicked.connect(self.delete_order)
+
+        self.getStatsButton.clicked.connect(self.stat_input_menu)
+        self.statsinputer = None
         load_orders(self)
 
         self.productsTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -46,7 +82,9 @@ class AdminMenu(QWidget):
         self.editProductButton.clicked.connect(self.edit_product)
         self.editproducter = None
 
-        self.productsTable.itemSelectionChanged.connect(self.enable_del_change_buttons)
+        self.productsTable.itemSelectionChanged.connect(
+            lambda: enable_del_change_buttons(self.productsTable, self.editProductButton, self.deleteProductButton)
+        )
         self.deleteProductButton.clicked.connect(self.delete_product)
         load_products(self)
 
@@ -62,8 +100,16 @@ class AdminMenu(QWidget):
 
         self.deleteFoodButton.clicked.connect(self.delete_food)
 
-        self.foodsTable.itemSelectionChanged.connect(self.enable_del_change_buttons_foods)
-        load_foods(self)
+        self.foodsTable.itemSelectionChanged.connect(
+            lambda: enable_del_change_buttons(self.foodsTable, self.editFoodButton, self.deleteFoodButton)
+        )
+        load_foods(self.foodsTable)
+
+    def delete_order_trigger(self):
+        if len(set(index.row() for index in self.ordersTable.selectedIndexes())) == 1:
+            self.deleteOrderButton.setEnabled(True)
+        else:
+            self.deleteOrderButton.setEnabled(False)
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         self.parent.show()
@@ -72,7 +118,12 @@ class AdminMenu(QWidget):
     def delete_food(self):
         name_to_delete = str(self.foodsTable.item(self.foodsTable.currentRow(), 0).text())
         self.foodStatusLabel.setText(foods.delete(name_to_delete))
-        load_foods(self)
+        load_foods(self.foodsTable)
+
+    def delete_order(self):
+        id_to_delete = int(self.foodsTable.item(self.foodsTable.currentRow(), 0).text())
+        self.orderStatusLabel.setText(delete(id_to_delete))  # orders/orders.py
+        load_orders(self)
 
     def delete_product(self):
         name_to_delete = str(self.productsTable.item(self.productsTable.currentRow(), 0).text())
@@ -98,27 +149,9 @@ class AdminMenu(QWidget):
         self.editfooder = FoodEditMenu(parent=self)
         self.editfooder.show()
 
-    def enable_del_change_buttons(self):
-        if len(set(index.row() for index in self.productsTable.selectedIndexes())) == 1:
-            self.editProductButton.setEnabled(True)
-            self.deleteProductButton.setEnabled(True)
-        elif len(set(index.row() for index in self.productsTable.selectedIndexes())) > 1:
-            self.editProductButton.setEnabled(False)
-            self.deleteProductButton.setEnabled(True)
-        elif len(set(index.row() for index in self.productsTable.selectedIndexes())) == 0:
-            self.editProductButton.setEnabled(False)
-            self.deleteProductButton.setEnabled(False)
-
-    def enable_del_change_buttons_foods(self):
-        if len(set(index.row() for index in self.foodsTable.selectedIndexes())) == 1:
-            self.editFoodButton.setEnabled(True)
-            self.deleteFoodButton.setEnabled(True)
-        elif len(set(index.row() for index in self.foodsTable.selectedIndexes())) > 1:
-            self.editFoodButton.setEnabled(False)
-            self.deleteFoodButton.setEnabled(True)
-        elif len(set(index.row() for index in self.foodsTable.selectedIndexes())) == 0:
-            self.editFoodButton.setEnabled(False)
-            self.deleteFoodButton.setEnabled(False)
+    def stat_input_menu(self) -> None:
+        self.statsinputer = StatsInputMenu(parent=self)
+        self.statsinputer.show()
 
 
 app = QtWidgets.QApplication(sys.argv)

@@ -14,19 +14,22 @@ def get_order_by_id(order_id: int) -> dict:
 def get_orders_by_username(username: str) -> list:
     output_list = []
     list_of_orders = open_json_to_read('orders/orders.json')
-    for order in list_of_orders
+    for order in list_of_orders:
         if order['username'] == username:
             output_list.append(order)
     return output_list
 
 
-def set_order_item(order_id: int, order_object: str, replace_item)
-    # Ñòàòóñû çàêàçà:
-    # 0 - Çàêàç ñîçäàí
-    # 1 - Çàêàç ïğèíÿò
-    # 2 - Çàêàç ãîòîâ
-    # 3 - Çàêàç äîñòàâëåí
-    # 4 - Çàêàç çàâåğøåí
+def delete(order_id: int) -> str:
+    list_of_orders = open_json_to_read('orders/orders.json')
+    for order in list_of_orders:
+        if order['id'] == order_id:
+            list_of_orders.remove(order)
+            update(list_of_orders, 'orders/orders.json')
+            return 'Ğ—Ğ°ĞºĞ°Ğ· ÑƒÑĞ¿ĞµÑˆĞ½Ğ¾ ÑƒĞ´Ğ°Ğ»ĞµĞ½'
+
+
+def set_order_item(order_id: int, order_object: str, replace_item):
     list_of_orders = open_json_to_read('orders/orders.json')
     for order in list_of_orders:
         if order['id'] == order_id:
@@ -34,3 +37,29 @@ def set_order_item(order_id: int, order_object: str, replace_item)
             update(list_of_orders, 'orders/orders.json')
             return
 
+
+def get_status_name(status: int) -> str:
+    if status == 0:
+        return 'Ğ—Ğ°ĞºĞ°Ğ· ÑĞ¾Ğ·Ğ´Ğ°Ğ½'
+    if status == 1:
+        return 'Ğ—Ğ°ĞºĞ°Ğ· Ğ¿Ñ€Ğ¸Ğ½ÑÑ‚'
+    if status == 2:
+        return 'Ğ—Ğ°ĞºĞ°Ğ· Ğ³Ğ¾Ñ‚Ğ¾Ğ²'
+    if status == 3:
+        return 'Ğ—Ğ°ĞºĞ°Ğ· Ğ´Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½'
+    if status == 4:
+        return 'Ğ—Ğ°ĞºĞ°Ğ· Ğ·Ğ°Ğ²ĞµÑ€ÑˆĞµĞ½'
+
+
+def get_address_name(address: dict) -> str:
+    out_address = f"Ğ³. {address['city']}, ÑƒĞ». {address['street']}, Ğ´Ğ¾Ğ¼/ÑÑ‚Ñ€. {address['house']}"
+    if len(address['apt']) > 0:
+        out_address += f", ĞºĞ²/Ğ¾Ñ„Ğ¸Ñ. {address['apt']}"
+    return out_address
+
+
+def get_order_list(order: dict) -> str:
+    out_order = ''
+    for item in order:
+        out_order += f"{order[item]} {item}. "
+    return out_order

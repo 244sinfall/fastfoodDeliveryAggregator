@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from admin.commonoperations import add_ingredients_to_list, update_selfprice, load_ingredients_to_list, \
     enable_del_button, del_ingredient_from_list
-from adminmenu import load_foods
+from guicommonoperations import load_foods
 from foods import foods
 
 
@@ -53,7 +53,7 @@ class FoodEditMenu(QWidget):
                 self.parent.foodStatusLabel.setText(
                     foods.change(self.parent.foodsTable.item(self.parent.foodsTable.currentRow(), 0).text(),
                                  price, ingredients_to_edit))
-                load_foods(self.parent)
+                load_foods(self.parent.foodsTable)
                 self.close()
         except ValueError:
             self.editorStatusText.setText('Неверный формат!')

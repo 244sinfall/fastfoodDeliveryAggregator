@@ -2,7 +2,7 @@ from PyQt5 import uic
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtWidgets import QWidget
 
-from adminmenu import load_products
+from guicommonoperations import load_products
 from foodproducts import foodproduct
 
 

@@ -51,6 +51,11 @@
      </column>
      <column>
       <property name="text">
+       <string>Время заказа</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Клиент</string>
       </property>
      </column>
@@ -82,11 +87,6 @@
      <column>
       <property name="text">
        <string>Телефон</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Время заказа</string>
       </property>
      </column>
      <column>
