@@ -1,0 +1,23 @@
+[
+      {
+        "id": 0,
+        "username": "Дмитрий",
+        "paycheck": 600.0,
+        "delivery": true,
+        "address": {
+          "city": "Красноярск",
+          "street": "Взлетная",
+          "house": "24",
+          "apt": ""
+        },
+        "phone": "89994414646",
+        "paid": true,
+        "status": 0,
+        "timeAndDate":  "08.11.21 15:30",
+        "timeToDeliver": "08.11.21 18:30",
+        "order": {
+            "Залупа": 1,
+            "Бутерброд": 1
+        }
+    }
+]
