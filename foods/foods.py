@@ -47,6 +47,13 @@ def get_food_json_dict(name) -> dict:
             return record
 
 
+def get_food_price(name) -> float:
+    getter = open_json_to_read('foods/foods.json')
+    for record in getter:
+        if record['name'] == name:
+            return record['price']
+
+
 def get_food_info(name) -> list:
     getter = open_json_to_read('foods/foods.json')
     for record in getter:

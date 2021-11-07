@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>403</width>
-    <height>106</height>
+    <width>410</width>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <widget class="QLabel" name="welcomingMessage">
    <property name="geometry">
     <rect>
-     <x>56</x>
+     <x>30</x>
      <y>10</y>
-     <width>291</width>
+     <width>381</width>
      <height>41</height>
     </rect>
    </property>

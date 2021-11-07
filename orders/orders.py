@@ -1,6 +1,8 @@
 import json
 from json import *
 
+from PyQt5.QtCore import QDateTime
+
 from json_commonoperations import open_json_to_read, update
 
 
@@ -63,3 +65,21 @@ def get_order_list(order: dict) -> str:
     for item in order:
         out_order += f"{order[item]} {item}. "
     return out_order
+
+
+def create_order(username: str, paycheck: float, paid: bool, delivery: bool, status: int, address: dict, phone: str,
+            time_to_deliver: str, order: dict) -> str:
+     order_dict = {
+         'id': 'something',
+         'timeAndDate': QDateTime.currentDateTime().toString('dd.MM.yy hh:mm'),
+         'username': username,
+         'paycheck': paycheck,
+         'paid': paid,
+         'delivery': delivery,
+         'status': status,
+         'address': address,
+         'phone': phone,
+         'timeToDeliver': time_to_deliver,
+         'order': order
+     }
+     print(order_dict)

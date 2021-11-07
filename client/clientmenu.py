@@ -9,6 +9,7 @@ class ClientMenu(QWidget):
     def __init__(self, parent, client_name):
         super().__init__()
         self.parent = parent
+        self.client_name = client_name
         uic.loadUi('client/clientmenu.ui', self)
         self.clientExitButton.clicked.connect(self.close)
         self.welcomingLabel.setText(f'Добро пожаловать, {client_name}!')

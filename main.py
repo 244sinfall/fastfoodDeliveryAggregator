@@ -46,7 +46,7 @@ class ClientMenuEnter(QWidget):
         self.parent = parent
         self.clientmenu = None
         uic.loadUi('client/clientmenuenter.ui', self)
-        regexp = QRegExp("([А-Яа-яЁё]{1,20}\\S)")
+        regexp = QRegExp("([А-Яа-яЁё]{1,50}\\S)")
         self.nameInput.setValidator(QRegExpValidator(regexp))
         self.toClientMenuTrigger.clicked.connect(lambda: self.to_client_menu(self.nameInput.text()))
 

@@ -1,20 +1,29 @@
 [
     {
         "name": "Хлеб",
-        "protein": 5.0,
-        "fats": 5.0,
-        "carbohydrates": 2.0,
-        "calories": 60,
+        "protein": 10.0,
+        "fats": 10.0,
+        "carbohydrates": 1.0,
+        "calories": 50,
         "mass": 100,
-        "price": 10.0
+        "price": 20.0
     },
     {
         "name": "Колбаса",
-        "protein": 10.0,
-        "fats": 12.0,
-        "carbohydrates": 14.0,
-        "calories": 250,
+        "protein": 20.0,
+        "fats": 20.0,
+        "carbohydrates": 10.0,
+        "calories": 300,
         "mass": 100,
-        "price": 40.0
+        "price": 100.0
+    },
+    {
+        "name": "Сексуальность",
+        "protein": 100.0,
+        "fats": 100.0,
+        "carbohydrates": 100.0,
+        "calories": 1000,
+        "mass": 9999,
+        "price": 10000.0
     }
 ]

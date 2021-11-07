@@ -12,7 +12,7 @@ def check_existance(name: str, file: str) -> bool:
 
 
 def update(to_update: list, file: str) -> None:
-    with open(file, 'w', encoding='ISO-8859-5') as f:
+    with open(file, 'w', encoding='windows-1251') as f:
         json.dump(to_update, f, ensure_ascii=False, indent=4)
 
 
