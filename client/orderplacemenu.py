@@ -111,7 +111,6 @@ class OrderPlaceMenu(QWidget):
                     self.placerStatusLabel.setText('Нажмите оплатить для перехода к платежу!')
                     return
         else:
-            print(len(self.phoneInput.text()))
             self.placerStatusLabel.setText('Некорретный номер телефона!')
             return
         # Установка значений
@@ -181,14 +180,12 @@ class OrderPlaceMenu(QWidget):
             self.orderBuilder.removeRow(row)
         else:
             self.orderBuilder.setItem(row, 1, QTableWidgetItem(str(int(self.orderBuilder.item(row, 1).text()) - 1 )))
-        print(self.elementsInOrder)
         self.update_order_price()
         if self.elementsInOrder is False:
             self.placeOrderButton.Enabled(False)
 
     def add_element_to_order(self, element: str):
         self.elementsInOrder.append(element)
-        print(self.elementsInOrder)
         self.update_order_price()
         if self.deleteElement.isEnabled() is False:
             self.placeOrderButton.setEnabled(True)

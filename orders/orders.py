@@ -89,5 +89,4 @@ def create_order(username: str, paycheck: float, paid: bool, delivery: bool, sta
         'timeToDeliver': time_to_deliver,
         'order': order
     }
-    print(order_dict)
     append(order_dict, 'orders/orders.json')

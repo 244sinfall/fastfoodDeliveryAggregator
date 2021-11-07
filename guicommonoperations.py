@@ -30,15 +30,12 @@ def load_orders_routine(table, object_counter, row=0):
 
 def load_orders_by_username(table, username: str) -> None:
     # Этот код выгружает список заказов с фильтрацией по имени клиента (для списка у клиента)
-    print(f'got here. {table} - table, {username} - username')
     while table.rowCount() > 0:
         table.removeRow(0)
     row = 0
     counter = open_json_to_read('orders/orders.json')
     for object_counter in counter:
-        print(object_counter['username'])
         if object_counter['username'] == username:
-            print('found')
             load_orders_routine(table, object_counter, row)
             row += 1
 
