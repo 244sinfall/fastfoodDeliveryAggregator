@@ -1,6 +1,3 @@
-import json
-from json import *
-
 from json_commonoperations import check_existance, update, append, open_json_to_read
 
 

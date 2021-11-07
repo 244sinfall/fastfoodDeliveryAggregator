@@ -1,6 +1,3 @@
-import json
-from json import *
-
 from foodproducts.foodproduct import get_product_info
 from json_commonoperations import check_existance, append, update, open_json_to_read
 

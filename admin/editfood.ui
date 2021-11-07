@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Добавить</string>
+   <string>Изменить блюдо</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -41,16 +41,6 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Цена (руб):</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="priceEditor">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>80</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -165,6 +155,16 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Удалить ингредиент</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="priceEditor">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>80</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
    </property>
   </widget>
  </widget>

@@ -1,5 +1,4 @@
 from PyQt5 import uic, QtWidgets, QtCore
-from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from admin.commonoperations import add_ingredients_to_list, update_selfprice, load_ingredients_to_list, \
@@ -15,12 +14,9 @@ class FoodEditMenu(QWidget):
         uic.loadUi('admin/editfood.ui', self)
         self.cancelEditorButton.clicked.connect(self.close)
         self.editConfirmButton.clicked.connect(self.edit_old_food)
-        self.priceEditor.setValidator(QDoubleValidator(0, 10000, 2))
         self.ingredientsShow.itemDoubleClicked.connect(
             lambda: add_ingredients_to_list(self.ingredientsToEdit, self.ingredientsShow, self.editorStatusText)
         )
-        self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
         self.ingredientsToEdit.itemSelectionChanged.connect(
             lambda: enable_del_button(self.ingredientsToEdit, self.deleteIngredient)
         )
@@ -30,9 +26,11 @@ class FoodEditMenu(QWidget):
         self.deleteIngredient.clicked.connect(
             lambda: del_ingredient_from_list(self.ingredientsToEdit, self.selfPrice)
         )
+        self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.ingredientsToEdit.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
         food_info = foods.get_food_json_dict(
             self.parent.foodsTable.item(self.parent.foodsTable.currentRow(), 0).text())
-        self.priceEditor.setText(str(food_info['price']))
+        self.priceEditor.setValue(food_info['price'])
         for ingreds in food_info['ingredients']:
             self.ingredientsToEdit.insertRow(0)
             self.ingredientsToEdit.setItem(0, 0, QTableWidgetItem(ingreds))
@@ -42,7 +40,7 @@ class FoodEditMenu(QWidget):
         load_ingredients_to_list(self.ingredientsShow)
 
     def edit_old_food(self) -> None:
-        price = float(self.priceEditor.text())
+        price = float(self.priceEditor.value())
         try:
             rowcounts = self.ingredientsToEdit.rowCount()
             if rowcounts > 0:

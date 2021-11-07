@@ -1,5 +1,4 @@
 from PyQt5 import uic
-from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QWidget
 
 from admin.statsview import StatsView
@@ -11,7 +10,6 @@ class StatsInputMenu(QWidget):
         self.parent = parent
         uic.loadUi('admin/statsinput.ui', self)
         self.cancelStatsButton.clicked.connect(self.close)
-        self.statsDaysInput.setValidator(QIntValidator(1, 365))
         self.getFinaleStats.clicked.connect(lambda: self.get_stats_window(int(self.statsDaysInput.text())))
         self.statsview = None
 

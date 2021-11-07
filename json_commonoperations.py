@@ -1,9 +1,8 @@
 import json
-from json import *
 
 
 def check_existance(name: str, file: str) -> bool:
-    with open(file, 'r', encoding='ISO-8859-5') as f:
+    with open(file, 'r', encoding='windows-1251') as f:
         checker = json.load(f)
         for objects in checker:
             if objects['name'] == name:

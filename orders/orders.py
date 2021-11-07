@@ -1,10 +1,17 @@
-import json
-from json import *
-
 from PyQt5.QtCore import QDateTime
 
-from json_commonoperations import open_json_to_read, update
+from json_commonoperations import open_json_to_read, update, append
 
+
+def get_new_order_id() -> int:
+    id_selector = 0
+    list_of_orders = open_json_to_read('orders/orders.json')
+    for order in list_of_orders:
+        if id_selector == order['id']:
+            id_selector += 1
+        else:
+            return id_selector
+    return len(list_of_orders)
 
 def get_order_by_id(order_id: int) -> dict:
     list_of_orders = open_json_to_read('orders/orders.json')
@@ -68,18 +75,19 @@ def get_order_list(order: dict) -> str:
 
 
 def create_order(username: str, paycheck: float, paid: bool, delivery: bool, status: int, address: dict, phone: str,
-            time_to_deliver: str, order: dict) -> str:
-     order_dict = {
-         'id': 'something',
-         'timeAndDate': QDateTime.currentDateTime().toString('dd.MM.yy hh:mm'),
-         'username': username,
-         'paycheck': paycheck,
-         'paid': paid,
-         'delivery': delivery,
-         'status': status,
-         'address': address,
-         'phone': phone,
-         'timeToDeliver': time_to_deliver,
-         'order': order
-     }
-     print(order_dict)
+                 time_to_deliver: str, order: dict) -> str:
+    order_dict = {
+        'id': get_new_order_id(),
+        'timeAndDate': QDateTime.currentDateTime().toString('dd.MM.yy hh:mm'),
+        'username': username,
+        'paycheck': paycheck,
+        'paid': paid,
+        'delivery': delivery,
+        'status': status,
+        'address': address,
+        'phone': phone,
+        'timeToDeliver': time_to_deliver,
+        'order': order
+    }
+    print(order_dict)
+    append(order_dict, 'orders/orders.json')

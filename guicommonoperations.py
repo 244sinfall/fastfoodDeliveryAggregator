@@ -1,4 +1,3 @@
-import json
 from PyQt5.QtWidgets import QTableWidgetItem
 from foodproducts import foodproduct
 from foods import foods
@@ -8,19 +7,20 @@ from orders.orders import get_status_name, get_address_name, get_order_list
 
 
 def load_orders_routine(table, object_counter, row=0):
+    # Типовая функция, которая выгружает список заказов в выбранную таблицу.
     table.insertRow(row)
     table.setItem(row, 0, QTableWidgetItem(str(object_counter['id'])))
     table.setItem(row, 1, QTableWidgetItem(QTableWidgetItem(str(object_counter['timeAndDate']))))
     table.setItem(row, 2, QTableWidgetItem(str(object_counter['username'])))
     table.setItem(row, 3, QTableWidgetItem(str(object_counter['paycheck'])))
     if object_counter['paid'] is True:
-        table.setItem(row, 4, QTableWidgetItem('Да'))
+        table.setItem(row, 4, QTableWidgetItem('Оплачено'))
     if object_counter['paid'] is False:
-        table.setItem(row, 4, QTableWidgetItem('Нет'))
+        table.setItem(row, 4, QTableWidgetItem('Не оплачено'))
     if object_counter['delivery'] is True:
         table.setItem(row, 5, QTableWidgetItem('Доставка'))
     if object_counter['delivery'] is False:
-        table.setItem(row, 5, QTableWidgetItem('Самовызов'))
+        table.setItem(row, 5, QTableWidgetItem('Самовывоз'))
     table.setItem(row, 6, QTableWidgetItem(get_status_name(object_counter['status'])))
     table.setItem(row, 7, QTableWidgetItem(get_address_name(object_counter['address'])))
     table.setItem(row, 8, QTableWidgetItem(QTableWidgetItem(str(object_counter['phone']))))
@@ -29,6 +29,7 @@ def load_orders_routine(table, object_counter, row=0):
 
 
 def load_orders_by_username(table, username: str) -> None:
+    # Этот код выгружает список заказов с фильтрацией по имени клиента (для списка у клиента)
     print(f'got here. {table} - table, {username} - username')
     while table.rowCount() > 0:
         table.removeRow(0)
@@ -43,6 +44,7 @@ def load_orders_by_username(table, username: str) -> None:
 
 
 def load_orders(window) -> None:
+    # выгружает все заказы, администратору и менеджеру
     table = window.ordersTable
     while table.rowCount() > 0:
         table.removeRow(0)
@@ -54,6 +56,7 @@ def load_orders(window) -> None:
 
 
 def load_products(window) -> None:
+    # выгружает список продуктов из JSON, для администратора
     while window.productsTable.rowCount() > 0:
         window.productsTable.removeRow(0)
     row = 0
@@ -72,6 +75,7 @@ def load_products(window) -> None:
 
 
 def load_foods(table) -> None:
+    # выгружает список блюд в выбранную таблицу, используется у администратора и клиента при заказе
     while table.rowCount() > 0:
         table.removeRow(0)
     row = 0

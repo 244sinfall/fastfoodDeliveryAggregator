@@ -1,12 +1,11 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtCore import QRegExp, QDateTime, QDate, QTime
-from PyQt5.QtGui import QIntValidator, QRegExpValidator
+from PyQt5.QtCore import QDate, QTime
+from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from admin.commonoperations import enable_del_button
 from foods.foods import get_food_info, get_food_price
-from guicommonoperations import load_foods
-from orders import orders
+from guicommonoperations import load_foods, load_orders_by_username
 from orders.orders import get_order_by_id, create_order
 
 
@@ -17,6 +16,8 @@ def get_city_name(row) -> str:
         return 'Дивногорск'
     if row == 2:
         return 'Сосновоборск'
+    else:
+        return 'Красноярск'
 
 
 class OrderPlaceMenu(QWidget):
@@ -34,17 +35,6 @@ class OrderPlaceMenu(QWidget):
         self.cardPayment.toggled.connect(lambda: self.unlock_card_control(True))
         self.cashPayment.toggled.connect(lambda: self.unlock_card_control(False))
         self.foodsToAdd.itemDoubleClicked.connect(self.add_food_to_order_builder)
-        self.cardInputFirst.setValidator(QIntValidator(1000, 9999))
-        self.cardInputSecond.setValidator(QIntValidator(1000, 9999))
-        self.cardInputThird.setValidator(QIntValidator(1000, 9999))
-        self.cardInputFourth.setValidator(QIntValidator(1000, 9999))
-        self.CVCInput.setValidator(QIntValidator(100, 999))
-        self.cardMonth.setValidator(QIntValidator(0, 12))
-        self.cardYear.setValidator(QIntValidator(21, 99))
-        self.foodsToAdd.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.foodsToAdd.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.orderBuilder.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.orderBuilder.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         self.orderBuilder.itemSelectionChanged.connect(
             lambda: enable_del_button(self.orderBuilder, self.deleteElement)
         )
@@ -53,6 +43,20 @@ class OrderPlaceMenu(QWidget):
             lambda: self.remove_element_from_order(self.orderBuilder.currentRow())
         )
         self.placeOrderButton.clicked.connect(self.place_order)
+
+        self.cardInputFirst.setValidator(QIntValidator(1000, 9999))
+        self.cardInputSecond.setValidator(QIntValidator(1000, 9999))
+        self.cardInputThird.setValidator(QIntValidator(1000, 9999))
+        self.cardInputFourth.setValidator(QIntValidator(1000, 9999))
+        self.CVCInput.setValidator(QIntValidator(100, 999))
+        self.cardMonth.setValidator(QIntValidator(0, 12))
+        self.cardYear.setValidator(QIntValidator(21, 99))
+
+        self.foodsToAdd.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.foodsToAdd.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.orderBuilder.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.orderBuilder.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+
         self.timeToDeliver.setDate(QDate.currentDate())
         self.currentTime = QTime.currentTime()
         self.hour = self.currentTime.hour()
@@ -62,7 +66,9 @@ class OrderPlaceMenu(QWidget):
         self.timeToDeliver.setTime(self.fastestTime)
         self.timeToDeliver.setMinimumDate(QDate.currentDate())
         self.timeToDeliver.setMinimumTime(self.fastestTime)
+
         load_foods(self.foodsToAdd)
+
         if self.parent.myOrdersTable.rowCount() > 0:
             last_row = self.parent.myOrdersTable.rowCount()
             autofilled_info = get_order_by_id(int(self.parent.myOrdersTable.item(last_row-1, 0).text()))
@@ -79,10 +85,9 @@ class OrderPlaceMenu(QWidget):
                 self.houseInput.setText(autofilled_info['address']['house'])
                 self.aptInput.setText(autofilled_info['address']['apt'])
 
-
     def place_order(self):
         # Проверки корректности заполнения
-        if len(self.phoneInput.text()) == 11 or len(self.phoneInput.text()) == 12:
+        if len(self.phoneInput.text()) == 16:
             if self.deliveryTake.isChecked() is True:
                 if len(self.streetInput.text()) < 3:
                     self.placerStatusLabel.setText('Введите адрес доставки!')
@@ -109,6 +114,7 @@ class OrderPlaceMenu(QWidget):
             print(len(self.phoneInput.text()))
             self.placerStatusLabel.setText('Некорретный номер телефона!')
             return
+        # Установка значений
         username = self.parent.client_name
         address_dict = {}
         if self.deliveryTake.isChecked is False:
@@ -123,11 +129,14 @@ class OrderPlaceMenu(QWidget):
                 address_dict['apt'] = ''
             else:
                 address_dict['apt'] = self.aptInput.text()
-        create_order(username, (self.orderPrice+self.deliveryPrice), \
-                    self.cardPaid, self.deliveryTake.isChecked(), 0, address_dict, \
-                     self.phoneInput.text(), self.timeToDeliver.dateTime().toString('dd.MM.yy hh:mm'), \
-                      self.get_order_from_list(self.elementsInOrder))
-        print('Охуенно')
+        # Отправка в JSON
+        create_order(username, (self.orderPrice+self.deliveryPrice),
+                     self.cardPaid, self.deliveryTake.isChecked(), 0, address_dict,
+                     self.phoneInput.text(), self.timeToDeliver.dateTime().toString('dd.MM.yy hh:mm'),
+                     self.get_order_from_list(self.elementsInOrder))
+        self.parent.orderStatusLabel.setText('Заказ успешно создан. Ожидайте СМС или смотрите статус в "Мои заказы"')
+        load_orders_by_username(self.parent.myOrdersTable, username)
+        self.close()
 
     def count_delivery(self):
         if self.deliveryTake.isChecked() is True:
@@ -140,6 +149,7 @@ class OrderPlaceMenu(QWidget):
             self.deliveryCounter.setText(f'Стоимость доставки: {self.deliveryPrice} рублей')
         else:
             self.deliveryCounter.setText('')
+        self.update_order_price()
 
     def add_food_to_order_builder(self) -> None:
         selected_row = self.foodsToAdd.currentRow()
@@ -207,7 +217,7 @@ class OrderPlaceMenu(QWidget):
         self.streetInput.setEnabled(control)
         self.houseInput.setEnabled(control)
         self.aptInput.setEnabled(control)
-
+        self.count_delivery()
 
     def unlock_card_control(self, control: bool):
         if control is False:

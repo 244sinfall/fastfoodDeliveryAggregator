@@ -19,8 +19,40 @@ from foods import foods
 from foods.foods import is_product_usable
 from orders.orders import delete
 
+# Автор - Филин Дмитрий Алексеевич
+# Студент 1 курса ЗКИ-21 ИКИТ СФУ
+# Начал работу над проектом 02.11.21
+# github - https://github.com/244sinfall
+# Программа обладает следующими возможностями:
+# 1. Конструктор продуктов и блюд. Блюда собираются из продуктов, которые добавляются через интерфейс администратора.
+# У продуктов есть характеристики, масса за единицу и цена. Характеристики используются для математического рассчета
+# Ценности блюд, в то время как цена продуктов используется для расчета себестоимости блюда. Блюдо собирается из
+# созданных продуктов, имеют свою пищевую ценность, цену, название, установленное администратором. Записи о продуктах
+# и блюдах хранятся в JSON файлах.
+#
+# 2. У администратора есть возможность создать on-line отчет за выбранное количество дней. Отчет отражает расход
+# продуктов, реализованные блюда, себестоимость утраченных продуктов, а также прибыль с заказов и их количество (WIP)
+#
+# 3. Администратор может полностью удалять записи заказах. Записи, как и продукты с блюдами хранятся в JSON файле.
+#
+# 4. Менеджер может полностью изменять заказы, время приготовления, статус оплаты, статус заказа. Он может помечать
+# заказ как принятый, завершенный и так далее. Менеджер может смотреть завершенные заказы в отдельной вкладке, но не
+# может с ними взаимодействовать, только с теми, которые сейчас действительны.
+#
+# 5. Клиент может заказывать блюда из интерактивного списка. Клиент может несколько раз нажать на одно и тоже блюдо,
+# чтобы заказать несколько порций. Цена чека считается автоматически. Сервис позволяет оформить еду с доставкой в г.
+# Красноярск, Дивногорск, Сосновоборск или же самовывозом на розничной точке (Киренского 26Б :D). Клиент может оплатить
+# еду наличными при получении или картой сразу в приложении. Программа сохраняет заказы, которые создал конкретный
+# клиент. При новых заказах автоматически добавляется номер телефона и адрес, Который был указан к предыдущему заказу.
+#
+# 6. Заказы хранят расширенную информацию вроде времени заказа и времени к доставке, которое пользователь может указать
+# при заказе. Кроме того, JSON отражает оплачен ли заказ, оформлена доставка или самовывоз, также отражает конкретное
+# время заказа и прочую необходимую информацию.
+#
+
 
 class WelcomeMenu(QMainWindow):
+    # Главное меню с тремя кнопками
     def __init__(self):
         super().__init__()
         uic.loadUi('mainmenu.ui', self)
@@ -30,17 +62,21 @@ class WelcomeMenu(QMainWindow):
         self.client_Mode_Trigger.clicked.connect(self.go_client_menu)
 
     def go_admin_menu(self):
+        # Создание меню администратора, переход в него.
         self.admin_menu = AdminMenu(parent=self)
         self.admin_menu.show()
         self.hide()
 
     def go_client_menu(self):
+        # Создание меню входа пользователя, переход в него.
         self.client_menu = ClientMenuEnter(parent=self)
         self.client_menu.show()
         self.hide()
 
 
 class ClientMenuEnter(QWidget):
+    # Запрос имени клиента, Валидатор блочит цифры и пробелы, аналог авторизации. Дальнейшее взаимодействие
+    # описано в файле client/clientmenu.py
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -51,6 +87,7 @@ class ClientMenuEnter(QWidget):
         self.toClientMenuTrigger.clicked.connect(lambda: self.to_client_menu(self.nameInput.text()))
 
     def to_client_menu(self, client_name):
+        # Переход в полноценное меню клиента
         if len(self.nameInput.text()) > 0:
             self.clientmenu = ClientMenu(parent=self.parent, client_name=client_name)
             self.clientmenu.show()
@@ -58,6 +95,7 @@ class ClientMenuEnter(QWidget):
 
 
 class AdminMenu(QWidget):
+    # Меню администратора. Дальнейшее взаимодействие идет по директории /admin
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -121,7 +159,7 @@ class AdminMenu(QWidget):
         load_foods(self.foodsTable)
 
     def delete_order(self):
-        id_to_delete = int(self.foodsTable.item(self.foodsTable.currentRow(), 0).text())
+        id_to_delete = int(self.ordersTable.item(self.ordersTable.currentRow(), 0).text())
         self.orderStatusLabel.setText(delete(id_to_delete))  # orders/orders.py
         load_orders(self)
 
