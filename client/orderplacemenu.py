@@ -25,6 +25,7 @@ class OrderPlaceMenu(QWidget):
         super().__init__()
         self.parent = parent
         self.cardPaid = False
+        self.orderReady = False
         self.elementsInOrder = []
         self.orderPrice = 0.0
         self.deliveryPrice = 0.0
@@ -42,6 +43,7 @@ class OrderPlaceMenu(QWidget):
         self.deleteElement.clicked.connect(
             lambda: self.remove_element_from_order(self.orderBuilder.currentRow())
         )
+        self.creditCardPayButton.clicked.connect(self.pay_order_with_card)
         self.placeOrderButton.clicked.connect(self.place_order)
 
         self.cardInputFirst.setValidator(QIntValidator(1000, 9999))
@@ -85,34 +87,49 @@ class OrderPlaceMenu(QWidget):
                 self.houseInput.setText(autofilled_info['address']['house'])
                 self.aptInput.setText(autofilled_info['address']['apt'])
 
+    def is_credit_card_valid(self) -> bool:
+        if len(self.cardInputFirst.text()) < 4 or len(self.cardInputSecond.text()) < 4 or \
+                len(self.cardInputThird.text()) < 4 or len(self.cardInputFourth.text()) < 4:
+            self.placerStatusLabel.setText('Неверный номер карты!')
+            return False
+        if len(self.CVCInput.text()) < 3:
+            self.placerStatusLabel.setText('Неверный CVV/CVC карты!')
+            return False
+        if len(self.cardMonth.text()) < 2 or len(self.cardYear.text()) < 2 or \
+                int(self.cardMonth.text()) > 13 or int(self.cardYear.text()) < 21:
+            self.placerStatusLabel.setText('Неверный срок действия карты!')
+            return False
+        return True
+
+    def pay_order_with_card(self):
+        if self.is_credit_card_valid() is True:
+            if self.orderReady is True:
+                self.cardPaid = True
+                self.place_order()
+            else:
+                self.placerStatusLabel.setText('Сначала подтвердите заказ!')
+
     def place_order(self):
         # Проверки корректности заполнения
-        if len(self.phoneInput.text()) == 16:
-            if self.deliveryTake.isChecked() is True:
-                if len(self.streetInput.text()) < 3:
-                    self.placerStatusLabel.setText('Введите адрес доставки!')
-                    return
-                if len(self.houseInput.text()) == 0:
-                    self.placerStatusLabel.setText('Введите номер дома доставки!')
-                    return
-            if self.cardPayment.isChecked() is True:
-                if len(self.cardInputFirst.text()) < 4 or len(self.cardInputSecond.text()) < 4 or \
-                        len(self.cardInputThird.text()) < 4 or len(self.cardInputFourth.text()) < 4:
-                    self.placerStatusLabel.setText('Неверный номер карты!')
-                    return
-                if len(self.CVCInput.text()) < 3:
-                    self.placerStatusLabel.setText('Неверный CVV/CVC карты!')
-                    return
-                if len(self.cardMonth.text()) < 2 or len(self.cardYear.text()) < 2 or \
-                        int(self.cardMonth.text()) > 13 or int(self.cardYear.text()) < 21:
-                    self.placerStatusLabel.setText('Неверный срок действия карты!')
-                    return
-                if self.cardPaid is False:
-                    self.placerStatusLabel.setText('Нажмите оплатить для перехода к платежу!')
-                    return
-        else:
+        if len(self.phoneInput.text()) != 16:
             self.placerStatusLabel.setText('Некорретный номер телефона!')
             return
+        if self.deliveryTake.isChecked() is True:
+            if len(self.streetInput.text()) < 3:
+                self.placerStatusLabel.setText('Введите адрес доставки!')
+                return
+            if len(self.houseInput.text()) == 0:
+                self.placerStatusLabel.setText('Введите номер дома доставки!')
+                return
+        if self.cardPayment.isChecked() is True:
+            if self.is_credit_card_valid() is True:
+                if self.cardPaid is False:
+                    self.orderReady = True
+                    self.placerStatusLabel.setText('Нажмите оплатить для перехода к платежу!')
+                    return
+            else:
+                self.is_credit_card_valid()
+                return
         # Установка значений
         username = self.parent.client_name
         address_dict = {}

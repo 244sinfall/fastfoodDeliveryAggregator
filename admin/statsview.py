@@ -1,5 +1,4 @@
 from PyQt5 import uic
-from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QWidget
 
 

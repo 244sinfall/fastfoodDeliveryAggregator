@@ -1,4 +1,4 @@
-from PyQt5 import uic, QtCore
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QTableWidgetItem
 from foodproducts import foodproduct
 
