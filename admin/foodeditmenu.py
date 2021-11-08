@@ -1,8 +1,8 @@
 from PyQt5 import uic, QtWidgets, QtCore
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
-from admin.commonoperations import add_ingredients_to_list, update_selfprice, load_ingredients_to_list, \
-    enable_del_button, del_ingredient_from_list
+from commonoperations import add_ingredients_to_list, update_selfprice, load_ingredients_to_list, \
+    del_ingredient_from_list, enable_del_change_buttons
 from guicommonoperations import load_foods
 from foods import foods
 
@@ -18,7 +18,7 @@ class FoodEditMenu(QWidget):
             lambda: add_ingredients_to_list(self.ingredientsToEdit, self.ingredientsShow, self.editorStatusText)
         )
         self.ingredientsToEdit.itemSelectionChanged.connect(
-            lambda: enable_del_button(self.ingredientsToEdit, self.deleteIngredient)
+            lambda: enable_del_change_buttons(self.ingredientsToEdit, delete_button=self.deleteIngredient)
         )
         self.ingredientsToEdit.itemChanged.connect(
             lambda: update_selfprice(self.ingredientsToEdit, self.selfPrice)

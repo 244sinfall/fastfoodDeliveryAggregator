@@ -3,21 +3,20 @@ from PyQt5.QtCore import QDate, QTime
 from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
-from admin.commonoperations import enable_del_button
+from commonoperations import get_city_name, enable_del_change_buttons
 from foods.foods import get_food_info, get_food_price
 from guicommonoperations import load_foods, load_orders_by_username
 from orders.orders import get_order_by_id, create_order
 
 
-def get_city_name(row) -> str:
-    if row == 0:
-        return 'Красноярск'
-    if row == 1:
-        return 'Дивногорск'
-    if row == 2:
-        return 'Сосновоборск'
-    else:
-        return 'Красноярск'
+def get_order_from_list(input_list_order: list) -> dict:
+    output_dict = {}
+    for each_element in range(len(input_list_order)):
+        if input_list_order[each_element] in output_dict:
+            output_dict[input_list_order[each_element]] += 1
+        else:
+            output_dict[input_list_order[each_element]] = 1
+    return output_dict
 
 
 class OrderPlaceMenu(QWidget):
@@ -37,7 +36,7 @@ class OrderPlaceMenu(QWidget):
         self.cashPayment.toggled.connect(lambda: self.unlock_card_control(False))
         self.foodsToAdd.itemDoubleClicked.connect(self.add_food_to_order_builder)
         self.orderBuilder.itemSelectionChanged.connect(
-            lambda: enable_del_button(self.orderBuilder, self.deleteElement)
+            lambda: enable_del_change_buttons(self.orderBuilder, delete_button=self.deleteElement)
         )
         self.citySelector.itemSelectionChanged.connect(self.count_delivery)
         self.deleteElement.clicked.connect(
@@ -148,8 +147,8 @@ class OrderPlaceMenu(QWidget):
         # Отправка в JSON
         create_order(username, (self.orderPrice+self.deliveryPrice),
                      self.cardPaid, self.deliveryTake.isChecked(), 0, address_dict,
-                     self.phoneInput.text(), self.timeToDeliver.dateTime().toString('dd.MM.yy hh:mm'),
-                     self.get_order_from_list(self.elementsInOrder))
+                     self.phoneInput.text(), self.timeToDeliver.dateTime().toString('dd.MM.yyyy hh:mm'),
+                     get_order_from_list(self.elementsInOrder))
         self.parent.orderStatusLabel.setText('Заказ успешно создан. Ожидайте СМС или смотрите статус в "Мои заказы"')
         load_orders_by_username(self.parent.myOrdersTable, username)
         self.close()
@@ -181,15 +180,7 @@ class OrderPlaceMenu(QWidget):
         self.orderBuilder.setItem(order_rows, 1, QTableWidgetItem('1'))
         self.orderBuilder.setItem(order_rows, 2, QTableWidgetItem(str(food_info[1]) + ' руб.'))
         self.add_element_to_order(food_info[0])
-
-    def get_order_from_list(self, input_list_order: list) -> dict:
-        output_dict = {}
-        for each_element in range(len(input_list_order)):
-            if input_list_order[each_element] in output_dict:
-                output_dict[input_list_order[each_element]] += 1
-            else:
-                output_dict[input_list_order[each_element]] = 1
-        return output_dict
+        self.orderReady = False
 
     def remove_element_from_order(self, row):
         self.elementsInOrder.remove(self.orderBuilder.item(row, 0).text())
@@ -198,6 +189,7 @@ class OrderPlaceMenu(QWidget):
         else:
             self.orderBuilder.setItem(row, 1, QTableWidgetItem(str(int(self.orderBuilder.item(row, 1).text()) - 1 )))
         self.update_order_price()
+        self.orderReady = False
         if self.elementsInOrder is False:
             self.placeOrderButton.Enabled(False)
 

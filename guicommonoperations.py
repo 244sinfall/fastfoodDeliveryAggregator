@@ -28,6 +28,25 @@ def load_orders_routine(table, object_counter, row=0):
     table.setItem(row, 10, QTableWidgetItem(QTableWidgetItem(get_order_list(object_counter['order']))))
 
 
+def load_orders_to_manager(window) -> None:
+    # Этот код распределяет заказы между двумя окнами. Отмененные и завершенные заказы помещаются в архив,
+    # Остальные в текущие заказы
+    while window.currentOrdersTable.rowCount() > 0:
+        window.currentOrdersTable.removeRow(0)
+    while window.archiveOrdersTable.rowCount() > 0:
+        window.archiveOrdersTable.removeRow(0)
+    current_row = 0
+    archive_row = 0
+    counter = open_json_to_read('orders/orders.json')
+    for object_counter in counter:
+        if object_counter['status'] != 3 and object_counter['status'] != 4:
+            load_orders_routine(window.currentOrdersTable, object_counter, current_row)
+            current_row += 1
+        else:
+            load_orders_routine(window.archiveOrdersTable, object_counter, archive_row)
+            archive_row += 1
+
+
 def load_orders_by_username(table, username: str) -> None:
     # Этот код выгружает список заказов с фильтрацией по имени клиента (для списка у клиента)
     while table.rowCount() > 0:

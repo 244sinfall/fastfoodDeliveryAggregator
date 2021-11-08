@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>managerWidget</class>
+ <widget class="QWidget" name="managerWidget">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1097</width>
+    <height>511</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Панель менеджера</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1101</width>
+     <height>511</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideLeft</enum>
+   </property>
+   <widget class="QWidget" name="currentOrders">
+    <attribute name="title">
+     <string>Текущие заказы</string>
+    </attribute>
+    <widget class="QTableWidget" name="currentOrdersTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1091</width>
+       <height>461</height>
+      </rect>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Время заказа</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Клиент</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Сумма</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Статус оплаты</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Способ получения</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Статус</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Адрес доставки</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Телефон</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Время готовности</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Состав заказа</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="managerExitButton">
+     <property name="geometry">
+      <rect>
+       <x>990</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Выход</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="editOrderButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Изменить...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="acceptOrderButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Принять</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="setReadyButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Приготовлен</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="getPaidButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>460</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Принять оплату</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="toDeliveryButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>В доставку</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancelButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>890</x>
+       <y>460</y>
+       <width>100</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Отменить</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="managerStatusLabel">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>460</y>
+       <width>351</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="oldOrders">
+    <attribute name="title">
+     <string>Архивные заказы</string>
+    </attribute>
+    <widget class="QTableWidget" name="archiveOrdersTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1101</width>
+       <height>481</height>
+      </rect>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Время заказа</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Клиент</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Сумма</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Статус оплаты</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Способ получения</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Статус</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Адрес доставки</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Телефон</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Время готовности</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Состав заказа</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

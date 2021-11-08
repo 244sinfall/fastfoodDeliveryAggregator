@@ -1,3 +1,4 @@
+# В данном файле содержатся JSON операции, выполняемые из всех модулей.
 import json
 
 
@@ -15,7 +16,7 @@ def update(to_update: list, file: str) -> None:
         json.dump(to_update, f, ensure_ascii=False, indent=4)
 
 
-def append(record: list, file: str) -> None:
+def append(record, file: str) -> None:
     to_append = open_json_to_read(file)
     to_append.append(record)
     update(to_append, file)
