@@ -1,11 +1,128 @@
 [
     {
-        "name": "Хлеб",
-        "protein": 2.0,
-        "fats": 3.0,
-        "carbohydrates": 4.0,
-        "calories": 100,
+        "name": "Докторская колбаса",
+        "protein": 16.37,
+        "fats": 25.39,
+        "carbohydrates": 3.05,
+        "calories": 311,
+        "mass": 100,
+        "price": 133.0
+    },
+    {
+        "name": "Сырокопченая колбаса",
+        "protein": 15.0,
+        "fats": 40.0,
+        "carbohydrates": 0.2,
+        "calories": 420,
+        "mass": 100,
+        "price": 132.0
+    },
+    {
+        "name": "Охотничьи сосиски",
+        "protein": 25.3,
+        "fats": 40.0,
+        "carbohydrates": 0.3,
+        "calories": 463,
+        "mass": 100,
+        "price": 132.0
+    },
+    {
+        "name": "Ветчина",
+        "protein": 16.6,
+        "fats": 8.6,
+        "carbohydrates": 3.8,
+        "calories": 163,
+        "mass": 100,
+        "price": 60.0
+    },
+    {
+        "name": "Помидор",
+        "protein": 0.88,
+        "fats": 0.2,
+        "carbohydrates": 3.89,
+        "calories": 18,
+        "mass": 100,
+        "price": 8.5
+    },
+    {
+        "name": "Сыр",
+        "protein": 23.2,
+        "fats": 29.5,
+        "carbohydrates": 2.0,
+        "calories": 364,
+        "mass": 100,
+        "price": 100.0
+    },
+    {
+        "name": "Горчичный соус",
+        "protein": 1.5,
+        "fats": 34.0,
+        "carbohydrates": 18.0,
+        "calories": 390,
+        "mass": 100,
+        "price": 60.0
+    },
+    {
+        "name": "Тесто для пиццы",
+        "protein": 5.5,
+        "fats": 6.5,
+        "carbohydrates": 43.4,
+        "calories": 251,
+        "mass": 100,
+        "price": 16.0
+    },
+    {
+        "name": "Ананас",
+        "protein": 0.5,
+        "fats": 0.1,
+        "carbohydrates": 13.0,
+        "calories": 50,
+        "mass": 100,
+        "price": 22.5
+    },
+    {
+        "name": "Оливки",
+        "protein": 1.03,
+        "fats": 15.32,
+        "carbohydrates": 3.8,
+        "calories": 145,
+        "mass": 100,
+        "price": 45.0
+    },
+    {
+        "name": "Укроп сушеный",
+        "protein": 19.96,
+        "fats": 4.36,
+        "carbohydrates": 55.82,
+        "calories": 253,
+        "mass": 100,
+        "price": 147.0
+    },
+    {
+        "name": "Чесночный соус",
+        "protein": 1.0,
+        "fats": 41.0,
+        "carbohydrates": 14.0,
+        "calories": 430,
         "mass": 100,
         "price": 20.0
+    },
+    {
+        "name": "Колбаса салями",
+        "protein": 21.7,
+        "fats": 37.0,
+        "carbohydrates": 1.2,
+        "calories": 425,
+        "mass": 100,
+        "price": 110.0
+    },
+    {
+        "name": "Опята маринованные",
+        "protein": 1.8,
+        "fats": 1.0,
+        "carbohydrates": 0.4,
+        "calories": 18,
+        "mass": 100,
+        "price": 40.0
     }
 ]

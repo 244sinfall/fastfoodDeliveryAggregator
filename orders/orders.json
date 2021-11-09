@@ -1,62 +1,63 @@
 [
     {
         "id": 0,
-        "timeAndDate": "07.11.2021 08:02",
+        "timeAndDate": "09.11.2021 16:45",
         "username": "Дмитрий",
-        "paycheck": 230.0,
-        "paid": true,
+        "paycheck": 1590.0,
+        "paid": false,
         "delivery": true,
-        "status": 3,
-        "address": {
-            "city": "Дивногорск",
-            "street": "Средняя",
-            "house": "56а",
-            "apt": ""
-        },
-        "phone": "+7-999-441-46-46",
-        "timeToDeliver": "09.11.2021 09:01",
-        "order": {
-            "Хлеб": 1
-        }
-    },
-    {
-        "id": 2,
-        "timeAndDate": "09.11.2021 08:02",
-        "username": "Дмитрий",
-        "paycheck": 230.0,
-        "paid": true,
-        "delivery": true,
-        "status": 3,
-        "address": {
-            "city": "Дивногорск",
-            "street": "Средняя",
-            "house": "56а",
-            "apt": ""
-        },
-        "phone": "+7-999-441-46-46",
-        "timeToDeliver": "09.11.2021 09:01",
-        "order": {
-            "Хлеб": 1
-        }
-    },
-    {
-        "id": 1,
-        "timeAndDate": "09.11.2021 15:50",
-        "username": "вы",
-        "paycheck": 260.0,
-        "paid": true,
-        "delivery": true,
-        "status": 3,
+        "status": 1,
         "address": {
             "city": "Дивногорск",
             "street": "Средняя",
             "house": "56",
-            "apt": "а"
+            "apt": ""
         },
         "phone": "+7-999-441-46-46",
-        "timeToDeliver": "09.11.2021 16:50",
+        "timeToDeliver": "09.11.2021 17:45",
         "order": {
-            "Хлеб": 2
+            "BIG Пицца \"Ветчина и ананас\"": 1,
+            "BIG Пицца \"Салями\"": 1
+        }
+    },
+    {
+        "id": 1,
+        "timeAndDate": "09.11.2021 16:46",
+        "username": "Сергей",
+        "paycheck": 700.0,
+        "paid": true,
+        "delivery": false,
+        "status": 0,
+        "address": {
+            "city": "Красноярск",
+            "street": "Академика Киренского",
+            "house": "26Б",
+            "apt": ""
+        },
+        "phone": "+7-901-205-64-87",
+        "timeToDeliver": "09.11.2021 17:45",
+        "order": {
+            "BIG Пицца \"Салями\"": 1
+        }
+    },
+    {
+        "id": 2,
+        "timeAndDate": "09.11.2021 16:46",
+        "username": "Наталья",
+        "paycheck": 830.0,
+        "paid": false,
+        "delivery": true,
+        "status": 0,
+        "address": {
+            "city": "Сосновоборск",
+            "street": "Еловая",
+            "house": "23",
+            "apt": ""
+        },
+        "phone": "+7-979-645-88-77",
+        "timeToDeliver": "11.11.2021 06:00",
+        "order": {
+            "BIG Пицца \"Ветчина и ананас\"": 1
         }
     }
 ]
