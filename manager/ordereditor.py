@@ -33,7 +33,6 @@ class OrderEditor(QWidget):
             self.streetInput.setEnabled(True)
             self.houseInput.setEnabled(True)
             self.aptInput.setEnabled(True)
-            self.citySelector.setEnabled(True)
         else:
             self.attendanceTake.setChecked(True)
             self.citySelector.setCurrentRow(0)
@@ -43,7 +42,6 @@ class OrderEditor(QWidget):
             self.streetInput.setEnabled(False)
             self.houseInput.setEnabled(False)
             self.aptInput.setEnabled(False)
-            self.citySelector.setEnabled(False)
         self.deliveryTake.toggled.connect(lambda: self.open_address_editor(True))
         self.attendanceTake.toggled.connect(lambda: self.open_address_editor(False))
         self.cancelEditorButton.clicked.connect(self.close)
@@ -87,7 +85,12 @@ class OrderEditor(QWidget):
 
     def open_address_editor(self, state: bool):
         if state is True:
-            self.citySelector.setCurrentRow(0)
+            if self.autofilled_info['address']['city'] == 'Красноярск':
+                self.citySelector.setCurrentRow(0)
+            if self.autofilled_info['address']['city'] == 'Дивногорск':
+                self.citySelector.setCurrentRow(1)
+            if self.autofilled_info['address']['city'] == 'Сосновоборск':
+                self.citySelector.setCurrentRow(2)
             self.streetInput.setText('')
             self.houseInput.setText('')
             self.aptInput.setText('')
@@ -99,4 +102,3 @@ class OrderEditor(QWidget):
         self.streetInput.setEnabled(state)
         self.houseInput.setEnabled(state)
         self.aptInput.setEnabled(state)
-        self.citySelector.setEnabled(state)

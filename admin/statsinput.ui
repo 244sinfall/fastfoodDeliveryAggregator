@@ -55,14 +55,20 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="statsDaysInput">
+  <widget class="QSpinBox" name="getDaysBox">
    <property name="geometry">
     <rect>
      <x>100</x>
      <y>80</y>
-     <width>113</width>
-     <height>21</height>
+     <width>111</width>
+     <height>22</height>
     </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>365</number>
    </property>
   </widget>
  </widget>
