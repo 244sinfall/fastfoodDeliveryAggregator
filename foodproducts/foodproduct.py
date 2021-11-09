@@ -62,6 +62,5 @@ def get_partial_food_price(name, mass) -> float:
     getter = open_json_to_read('foodproducts/products.json')
     for record in getter:
         if record['name'] == name:
-            print((record['price']/record['mass'])*mass)
             return (record['price']/record['mass'])*mass
     return 0.0

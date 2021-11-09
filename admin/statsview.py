@@ -116,7 +116,6 @@ class StatsView(QWidget):
                     else:
                         self.realizedProductsStatsTable.insertRow(0)
                         self.realizedProductsStatsTable.setItem(0, 0, QTableWidgetItem(product))
-                        print(food_info['ingredients'][product], food_count)
                         self.realizedProductsStatsTable.setItem(0, 1, QTableWidgetItem(
                             str(food_info['ingredients'][product] * int(food_count))
                         ))
