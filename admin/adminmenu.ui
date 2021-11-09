@@ -13,6 +13,18 @@
     <height>521</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>736</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>736</width>
+    <height>521</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Панель администратора</string>
   </property>

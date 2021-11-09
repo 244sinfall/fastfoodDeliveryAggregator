@@ -136,6 +136,7 @@ class OrderPlaceMenu(QWidget):
             address_dict['city'] = 'Красноярск'
             address_dict['street'] = 'Академика Киренского'
             address_dict['house'] = '26Б'
+            address_dict['apt'] = ''
         else:
             address_dict['city'] = get_city_name(self.citySelector.currentRow())
             address_dict['street'] = self.streetInput.text()

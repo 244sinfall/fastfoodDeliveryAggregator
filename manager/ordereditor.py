@@ -56,7 +56,8 @@ class OrderEditor(QWidget):
             self.new_address = {
                 'city': 'Красноярск',
                 'street': 'Академика Киренского',
-                'house': '26Б'
+                'house': '26Б',
+                'apt': ''
             }
         else:
             self.new_delivery_Take = True

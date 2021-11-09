@@ -6,9 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>788</height>
+    <width>961</width>
+    <height>471</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>961</width>
+    <height>471</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>961</width>
+    <height>471</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Статистика магазина</string>
@@ -16,14 +40,11 @@
   <widget class="QTableWidget" name="realizedFoodsStatsTable">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>270</y>
+     <x>490</x>
+     <y>30</y>
      <width>461</width>
-     <height>192</height>
+     <height>211</height>
     </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <column>
     <property name="text">
@@ -32,21 +53,18 @@
    </column>
    <column>
     <property name="text">
-     <string>Количество</string>
+     <string>Количество (шт)</string>
     </property>
    </column>
   </widget>
   <widget class="QTableWidget" name="realizedProductsStatsTable">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>490</y>
+     <x>490</x>
+     <y>270</y>
      <width>461</width>
      <height>192</height>
     </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <column>
     <property name="text">
@@ -55,7 +73,7 @@
    </column>
    <column>
     <property name="text">
-     <string>Масса</string>
+     <string>Масса (грамм)</string>
     </property>
    </column>
   </widget>
@@ -67,9 +85,6 @@
      <width>461</width>
      <height>211</height>
     </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <row>
     <property name="text">
@@ -158,9 +173,9 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>250</y>
-     <width>341</width>
+     <x>490</x>
+     <y>10</y>
+     <width>291</width>
      <height>16</height>
     </rect>
    </property>
@@ -171,9 +186,9 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>470</y>
-     <width>381</width>
+     <x>490</x>
+     <y>250</y>
+     <width>291</width>
      <height>16</height>
     </rect>
    </property>
@@ -185,7 +200,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>690</y>
+     <y>250</y>
      <width>291</width>
      <height>16</height>
     </rect>
@@ -198,13 +213,10 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>710</y>
+     <y>270</y>
      <width>461</width>
-     <height>171</height>
+     <height>151</height>
     </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <row>
     <property name="text">
@@ -228,7 +240,7 @@
    </column>
    <column>
     <property name="text">
-     <string>Значение</string>
+     <string>Значение (руб)</string>
     </property>
    </column>
    <item row="0" column="0">
@@ -251,13 +263,45 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>880</y>
+     <y>430</y>
      <width>461</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Закрыть</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>240</y>
+     <width>971</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>-30</y>
+     <width>20</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
    </property>
   </widget>
  </widget>

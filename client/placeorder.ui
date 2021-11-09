@@ -10,6 +10,18 @@
     <height>699</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>584</width>
+    <height>699</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>584</width>
+    <height>699</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Создать заказ</string>
   </property>
@@ -759,7 +771,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>

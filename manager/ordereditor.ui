@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>282</width>
-    <height>331</height>
+    <height>332</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>282</width>
+    <height>332</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>282</width>
+    <height>332</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Изменить заказ</string>

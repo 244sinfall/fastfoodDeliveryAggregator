@@ -13,6 +13,18 @@
     <height>518</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>736</width>
+    <height>518</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>736</width>
+    <height>518</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Окно клиента</string>
   </property>
