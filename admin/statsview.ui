@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>483</width>
-    <height>911</height>
+    <height>788</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,9 @@
      <width>461</width>
      <height>192</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <column>
     <property name="text">
@@ -42,6 +45,9 @@
      <height>192</height>
     </rect>
    </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
    <column>
     <property name="text">
      <string>Наименование</string>
@@ -61,6 +67,9 @@
      <width>461</width>
      <height>211</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <row>
     <property name="text">
@@ -151,7 +160,7 @@
     <rect>
      <x>10</x>
      <y>250</y>
-     <width>291</width>
+     <width>341</width>
      <height>16</height>
     </rect>
    </property>
@@ -164,7 +173,7 @@
     <rect>
      <x>10</x>
      <y>470</y>
-     <width>291</width>
+     <width>381</width>
      <height>16</height>
     </rect>
    </property>
@@ -193,6 +202,9 @@
      <width>461</width>
      <height>171</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
    </property>
    <row>
     <property name="text">
